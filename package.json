@@ -20,11 +20,11 @@
   "homepage": "https://github.com/GoodStreets/GoodStreets#readme",
   "devDependencies": {
     "eslint": "^8.42.0",
-        "@babel/core": "^7.22.5",
+    "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
     "@babel/preset-react": "^7.22.5",
     "autoprefixer": "^10.4.14",
-       "html-webpack-plugin": "^5.5.3",
+    "html-webpack-plugin": "^5.5.3",
     "nodemon": "^2.0.22",
     "postcss-loader": "^7.3.3",
     "prisma": "^4.15.0",
