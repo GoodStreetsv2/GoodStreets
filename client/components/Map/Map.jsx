@@ -1,5 +1,7 @@
 import React from 'react'
 import { GoogleMap, useJsApiLoader,DrawingManager, Marker } from '@react-google-maps/api';
+// require('dotenv').config();
+// const MAP_API_KEY = process.env.REACT_APP_MAP_API_KEY;
 
 const containerStyle = {
   width: '100%',
@@ -28,7 +30,7 @@ const centers = [{
 function Map() {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyAPfQJ7-LyDUy6Qhesv_iNeSGXUZzHc6sk"
+    googleMapsApiKey: 'AIzaSyAPfQJ7-LyDUy6Qhesv_iNeSGXUZzHc6sk',
   })
 
   const [map, setMap] = React.useState(null)
