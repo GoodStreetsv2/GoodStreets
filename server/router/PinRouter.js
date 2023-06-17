@@ -1,6 +1,6 @@
 const express = require('express');
 
-const pinController = require('../controller/PinController.js');
+const pinController = require('../controller/pinController.js');
 
 const router = express.Router();
 

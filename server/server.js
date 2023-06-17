@@ -1,30 +1,25 @@
 const express = require('express');
 const app = express();
-const pinRouter = require('./router/PinRouter.js');
-// const PORT = 8080;
+const pinRouter = require('./router/pinRouter.js');
+const PORT = 3000;
 
-
-//we need to 'npm install pg'
-// const db = pg(connectionString);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/router', pinRouter);
-// var conString = "postgres://lnbgaogn:c3SKWHGnWIpZcTYbWbkQRQuElzLnJJeq@rajje.db.elephantsql.com/lnbgaogn" //Can be found in the Details page
-// var client = new pg.Client(conString);
-// client.connect(function(err) {
-//   if(err) {
-//     return console.error('could not connect to postgres', err);
-//   }
-//   client.query('SELECT NOW() AS "theTime"', function(err, result) {
-//     if(err) {
-//       return console.error('error running query', err);
-//     }
-//     console.log(result.rows[0].theTime);
-//     client.end();
-//   });
-// });
+
+app.use((err, req, res, next) => {
+    const defaultErr = {
+      log: 'Express error handler caught unknown middleware error',
+      status: 400,
+      message: { err: 'An error occurred' },
+    };
+    const errorObj = Object.assign({}, defaultErr, err);
+    console.log(errorObj.log);
+    return res.status(errorObj.status).json(errorObj.message);
+  });
+  
 
 app.listen(PORT, () => {
     console.log(`Server listening on Port: ${PORT}`);
