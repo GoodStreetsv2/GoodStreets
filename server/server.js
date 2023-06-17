@@ -1,13 +1,11 @@
 const express = require('express');
 const app = express();
 const pinRouter = require('./router/PinRouter.js');
-const PORT = 8080; // might not be needed
+// const PORT = 8080;
 
 
-require('dotenv').config();
-const connectionString = process.env.CONNECTION_STRING;
-const pg = require('pg'); //we need to 'npm install pg'
-const db = pg(connectionString);
+//we need to 'npm install pg'
+// const db = pg(connectionString);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
