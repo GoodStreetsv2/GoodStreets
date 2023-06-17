@@ -1,41 +1,72 @@
-import React from 'react';
-import { Wrapper, Status } from "@googlemaps/react-wrapper";
-import ErrorComponent from './ErrorComponent.jsx';
-import MyMapComponent from './MyMapComponent.jsx';
-import Spinner from './Spinner.jsx';
+import React from 'react'
+import { GoogleMap, useJsApiLoader,DrawingManager, Marker } from '@react-google-maps/api';
 
-function Map() {
+const containerStyle = {
+  width: '100%',
+  height: '800px'
+};
 
-
-  const center = { lat: -34.397, lng: 150.644 };
-  const zoom = 4;
-
-
-
-
-const render = (status) => {
-  switch (status) {
-    case Status.LOADING:
-      return <Spinner />;
-    case Status.FAILURE:
-      return <ErrorComponent />;
-    case Status.SUCCESS:
-      return <MyMapComponent center={center} zoom={zoom} />;
-  }
+const center = {
+  lat: 40.7366741,
+  lng: -73.987158,
 };
 
 
+const centers = [{
+  lat: 37.772,
+  lng: -122.214
+},
+{
+  lat: 37.672,
+  lng: -122.219
+},
+{
+  lat: 37.832,
+  lng: -122.424
+}];
 
+function Map() {
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyAPfQJ7-LyDUy6Qhesv_iNeSGXUZzHc6sk"
+  })
 
-  return (
-    <div>  <Wrapper apiKey={"AIzaSyAPfQJ7-LyDUy6Qhesv_iNeSGXUZzHc6sk"} render={render} />
+  const [map, setMap] = React.useState(null)
+const [markerPosition, setMarkerPosition] = React.useState(null)
 
-    </div>
-  );
+  const onLoad = React.useCallback(function callback(map) {
+    // This is just an example of getting and using the map instance!!! don't just blindly copy!
+    const bounds = new window.google.maps.LatLngBounds(center);
+    map.fitBounds(bounds);
+
+    setMap(map)
+  }, [])
+
+  const onUnmount = React.useCallback(function callback(map) {
+    setMap(null)
+  }, [])
+
+  return isLoaded ? (
+      <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={centers[0]}
+        zoom={2.5}
+        // gestureHandling= {"cooperative"}
+        onLoad={onLoad}
+        onUnmount={onUnmount}
+   
+        onClick={(event) =>
+    setMarkerPosition({ lat: event.latLng.lat(), lng: event.latLng.lng() })
+  }
+>
+
+        { /* Child components, such as markers, info windows, etc. */ }
+  <Marker draggable={true} position={markerPosition} />
+        <></>
+      </GoogleMap>
+  ) : <></>
 }
 
-export default Map;
-
-
+export default React.memo(Map)
 //AIzaSyAPfQJ7-LyDUy6Qhesv_iNeSGXUZzHc6sk
 
