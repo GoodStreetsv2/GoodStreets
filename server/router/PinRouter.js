@@ -4,8 +4,8 @@ const pinController = require('../controller/pinController.js');
 
 const router = express.Router();
 
-router.get('/', pinController.getPin, (req, res) => {
-    res.status(200).json({})
+router.get('/', pinController.getPins, (req, res) => {
+    return res.status(200).send('success!')
 });
 
 router.patch('/', pinController.updatePin, (req, res) => {
@@ -19,5 +19,7 @@ router.post('/', pinController.addPin, (req, res) => {
 router.delete('/', pinController.deletePin, (req, res) => {
     res.status(200).json({})
 });
+
+module.exports = router;
 
 

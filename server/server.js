@@ -7,7 +7,11 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/router', pinRouter);
+app.use('/pin', pinRouter);
+
+// app.get('/', (req, res) => {
+//   return res.status(200).send('Great Server Page')
+// });
 
 app.use((err, req, res, next) => {
     const defaultErr = {

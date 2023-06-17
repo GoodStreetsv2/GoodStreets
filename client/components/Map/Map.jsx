@@ -3,6 +3,7 @@ import { GoogleMap, useJsApiLoader,DrawingManager, Marker } from '@react-google-
 import { loadPins } from '../../state/pinSlice';
 import { useSelector, useDispatch } from 'react-redux';
 
+
 const containerStyle = {
   width: '100%',
   height: '800px'
@@ -24,7 +25,7 @@ function Map() {
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyAPfQJ7-LyDUy6Qhesv_iNeSGXUZzHc6sk"
+    googleMapsApiKey: 'AIzaSyAPfQJ7-LyDUy6Qhesv_iNeSGXUZzHc6sk',
   })
 
   const [map, setMap] = React.useState(null)
