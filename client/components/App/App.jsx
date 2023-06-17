@@ -8,7 +8,10 @@ function App() {
 
   return (
     <div className="App">  
+    <div className='#navbar'>
       <NavBar/>
+    </div>
+      
       <Map/>
     </div>
   );
