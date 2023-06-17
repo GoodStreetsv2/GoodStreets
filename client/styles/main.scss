@@ -2,13 +2,17 @@
 //http://10.0.10.140:8080/
 
 // $primary-color: #0480c9;
-$primary-color: #ffffea;
+$primary-color: #1c3144;
 $navbar-color: #4a4242;
-$button-color: #00cecb;
+$button-color: #5b6057;
 $font-color: #d8d8d8;
 
 // $primary-color: #e65d02;
 $genWidth: 600px;
+
+//import fonts
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Work+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&family=Roboto&family=Work+Sans&display=swap');
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -26,7 +30,17 @@ body {
   padding: 20px;
 }
 
+h1 {
+  display: flex;
+  flex-direction: center;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  color: white;
+}
+
 .btn {
+  font-family: 'Poppins', sans-serif;
   border: 2px solid $font-color;
   background-color: white;
   transition: 0.3s;
@@ -43,14 +57,11 @@ body {
 }
 
 nav {
-//
+  //
   border: 2px solid $button-color;
   margin-top: 10px;
+  margin-bottom: 20px;
   // width:
-}
-
-.navbar {
-  padding: 20px;
 }
 
 /** {
