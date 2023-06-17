@@ -5,7 +5,7 @@ const packageJson = require('./package.json');
 module.exports = {
   mode: 'development',
   entry: {
-    bundle: path.resolve(__dirname, 'src/index.js'),
+    bundle: path.resolve(__dirname, 'client/index.js'),
     // add here any additional entry points for code splitting.
   },
   output: {
@@ -23,11 +23,7 @@ module.exports = {
     hot: true,
     compress: true,
     proxy: {
-      '/todo/**': {
-        target: 'http://localhost:3000/',
-        secure: false,
-      },
-      '/socket.io/**': {
+      '/pin/**': {
         target: 'http://localhost:3000/',
         secure: false,
       },
