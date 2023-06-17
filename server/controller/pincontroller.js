@@ -15,7 +15,7 @@ pinController.addPin= async (req, res, next) => {
 };
 
 pinController.deletePin= async (req, res, next) => {
-    
+
 };
 
 module.exports = pinController;
