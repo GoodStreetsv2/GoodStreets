@@ -4,6 +4,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const packageJson = require('./package.json');
 const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 
 module.exports =  {
     mode: 'development',
@@ -149,6 +150,7 @@ module.exports =  {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
+        new Dotenv(),
         new HtmlWebpackPlugin({
             title: packageJson.name,
             filename: 'index.html',
