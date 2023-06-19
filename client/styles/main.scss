@@ -1,4 +1,4 @@
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 //http://10.0.10.140:8080/
 
 // $primary-color: #0480c9;
@@ -11,12 +11,12 @@ $font-color: #d8d8d8;
 $genWidth: 600px;
 
 //import fonts
-@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Work+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&family=Roboto&family=Work+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Work+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&family=Roboto&family=Work+Sans&display=swap");
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,31 +26,37 @@ body {
   background-attachment: fixed;
 }
 
-.App {
-  padding: 20px;
-}
-
 h1 {
   display: flex;
   flex-direction: center;
   align-items: center;
   justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-size: 100px;
-  color: white;
+  font-family: "Playfair Display", serif;
+  // font-size: 100px;
+  // color: gradient($font-color, lighten($font-color, 15%));
+  font-size: clamp(30pt, 10svh, 16svh);
+  // font-size: 6rem;
+  background: linear-gradient(45deg, $font-color, darken($font-color, 15%));
+  /*highlight-start */
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
+  /*highlight-end */
 }
 
-.btn {
-  font-family: 'Poppins', sans-serif;
-  font-size: 25px;
-  border: 2px solid $font-color;
-  background-color: white;
-  transition: 0.3s;
-  box-shadow: 2px 2px 2px;
-  &:hover {
-    background-color: rgb(5, 5, 254);
-  }
-}
+// .btn {
+//   font-family: "Poppins", sans-serif;
+//   font-size: 25px;
+//   border: 2px solid $font-color;
+//   background-color: white;
+//   transition: 0.3s;
+//   box-shadow: 2px 2px 2px;
+//   &:hover {
+//     background-color: rgb(5, 5, 254);
+//   }
+// }
 
 .buttons {
   display: flex;
@@ -59,23 +65,54 @@ h1 {
   align-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
-  
 }
 
-nav {
+$nav-bords: 3svh;
+
+.nav {
   //
+  height: clamp(5svh, 10svh, 16svh);
+  //font-size: clamp(5svh, 10svh, 16svh);
+
   border: 2px solid $button-color;
-  margin-top: 10px;
-  margin-bottom: 20px;
+  margin-top: $nav-bords;
+  margin-bottom: $nav-bords;
   border-radius: 5px;
 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  // padding-left: 20px;
+  // padding-right: 20px;
+  // padding-top: $nav-bords;
+  // padding-bottom: $nav-bords;
+  background-color: $navbar-color;
   // width:
-}
 
+  .Icon {
+    height: clamp(5svh, 10svh, 16svh);
+    transition: 0.3s;
+
+    &:hover {
+      scale: 1.1;
+      cursor: pointer;
+    }
+
+    &:active {
+      scale: 0.9;
+      // box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+    }
+  }
+}
 /** {
     style for the App component @Angelo 
 } */
 
 .App {
   width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

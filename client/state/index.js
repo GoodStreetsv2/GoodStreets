@@ -4,7 +4,8 @@ import  categorySlice from './categorySlice.js';
 
 export const store = configureStore({
   reducer: {
-    pin: pinReducer,
+     pin: pinReducer,
     category: categorySlice,
   },
 });
+   

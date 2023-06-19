@@ -8,7 +8,7 @@ pinController.getPin = async (req, res, next) => {
 
 pinController.updatePin= async (req, res, next) => {
 
-};
+}; 
 
 pinController.addPin= async (req, res, next) => {
     

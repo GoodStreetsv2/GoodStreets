@@ -1,24 +1,16 @@
-import React from 'react';
-import Button from '../Button/Button.jsx'
-import { useSelector, useDispatch } from 'react-redux';
-import screaming from '../../assets/screaming.svg';
+import React from "react";
+import { useSelector } from "react-redux";
+import Button from "C/Button";
 
 function NavBar() {
-const categories = useSelector(state => state.category.categoryNames);
+  const categories = useSelector((state) => state.category.categoryNames);
 
-console.log(categories)
+  // console.log(categories)
+  const arrCategories = categories.map((category) => {
+    return <Button key={category.id} c={category} />;
+  });
 
-
-  return (
-    <nav>
-    <div className='buttons'>  
-      <a><img src={screaming} alt='screaming' /></a>
-      <Button/>
-      <Button/>
-      <Button/>
- </div>
- </nav>
-  );
+  return <div className="nav">{arrCategories}</div>;
 }
 
 export default NavBar;

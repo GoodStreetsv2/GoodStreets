@@ -1,13 +1,7 @@
-import React from 'react';
-
+import React from "react";
 
 function Modal() {
-
-
-  return (
-    <div>  
-    </div>
-  );
+  return <div>Modal</div>;
 }
 
 export default Modal;

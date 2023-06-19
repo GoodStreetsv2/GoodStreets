@@ -1,13 +1,28 @@
 import { createSlice} from '@reduxjs/toolkit';
 
-
+ 
 const initialState = {
   categoryNames : [
     {
         id: 1,
         name: 'screaming',
-        icon: '/assets/screaming.svg',
-    }
+        iconName: 'screaming',
+    },
+  {
+        id: 2,
+        name: 'WTF',
+        iconName: 'mad',
+    },
+  {
+        id: 3,
+        name: 'screatoo realming',
+        iconName: 'poo',
+    },
+  {
+        id: 4,
+        name: 'dead',
+        iconName: 'skull',
+    },
   ],
 };
 
