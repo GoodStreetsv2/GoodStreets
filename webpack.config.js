@@ -143,6 +143,7 @@ module.exports =  {
             C: path.resolve(__dirname, 'client/components'),
             R: path.resolve(__dirname, 'client/routes'),
             S: path.resolve(__dirname, 'client/styles'),
+            Z: path.resolve(__dirname, 'client/state'),
             U: path.resolve(__dirname, 'client/utilities'),
         },
         extensions: ['.js', '.jsx', '.json', '.wasm'],
