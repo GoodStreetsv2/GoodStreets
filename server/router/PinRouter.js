@@ -5,6 +5,7 @@ const pinController = require('../controller/pinController.js');
 const router = express.Router();
 
 router.get('/', pinController.getPins, (req, res) => {
+    console.log('get request received');
     return res.status(200).json(res.locals.data)
 });
 
