@@ -32,12 +32,12 @@ pinController.addPin= async (req, res, next) => {
 };
 
 pinController.updatePin = async (req, res, next) => {
-    console.log('~~~~~~~~~~entering pinController.updatePin middelware~~~~~~~~~~');
+    console.log('~~~~~~~~~~entering pinController.updatePin middleware~~~~~~~~~~');
     return next();
 }; 
 
 pinController.deletePin= async (req, res, next) => {
-    console.log('~~~~~~~~~~entering pinController.getPins middelware~~~~~~~~~~');
+    console.log('~~~~~~~~~~entering pinController.getPins middleware~~~~~~~~~~');
     return next();
 };
 
