@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-require("dotenv").config();
 
 import {
   GoogleMap,
@@ -13,9 +12,7 @@ import {
 
 export default function Home() {
   const { isLoaded } = useLoadScript({
-    //WE CAN'T FIGURE OUT DOTENV
-    // googleMapsApiKey:
-    // googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   });
   if (!isLoaded) return <div> Loading...</div>;
   return <Map />;
