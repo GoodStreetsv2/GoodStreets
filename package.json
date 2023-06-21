@@ -4,10 +4,10 @@
   "description": "a CRUD application to pinpoint in a google map",
   "main": "index.js",
   "scripts": {
-    "start": "node ./client/index.js",
-    "dev": "clear && concurrently \"webpack-dev-server --hot\" \"nodemon ./server/index.js\"",
+    "start": "NODE_ENV=production nodemon server/server.js",
+    "dev": "NODE_ENV=development webpack serve & nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "clear && webpack --env mode='production'"
+    "build": "clear && webpack"
   },
   "repository": {
     "type": "git",

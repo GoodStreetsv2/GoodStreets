@@ -1,7 +1,13 @@
 const express = require('express');
 const app = express();
-const pinRouter = require('./router/pinRouter.js');
+const pinRouter = require('./router/PinRouter');
 const PORT = 3000;
+
+const pool = require('./database/db');
+
+pool.connect().then(client => {
+  console.log('connected to SQL database')
+});
 
 
 app.use(express.json());

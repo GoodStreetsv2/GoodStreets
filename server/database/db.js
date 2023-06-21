@@ -1,5 +1,5 @@
 require('dotenv').config();
-const connectionString = process.env.CONNECTION_STRING;
+const connectionString = 'postgres://xavzowox:XN8tG6HIhHXfcLvnGrhbqIoT3jV0qGlN@drona.db.elephantsql.com/xavzowox';
 const { Pool } = require('pg');
 
 const pool = new Pool({
@@ -7,8 +7,9 @@ const pool = new Pool({
 });
 
 module.exports = {
-    async query(text, params) {
-      const res = await pool.query(text, params);
-      return res;
-    }
+    query: (text, params, callback) => {
+    console.log('executed query', text);
+    return pool.query(text, params, callback);
+  },
+  connect: () => pool.connect(),
 }; 
