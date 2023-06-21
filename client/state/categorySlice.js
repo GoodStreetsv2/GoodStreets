@@ -10,17 +10,17 @@ const initialState = {
     },
   {
         id: 2,
-        name: 'WTF',
+        name: 'mad',
         iconName: 'mad',
     },
   {
         id: 3,
-        name: 'screatoo realming',
+        name: 'poo',
         iconName: 'poo',
     },
   {
         id: 4,
-        name: 'dead',
+        name: 'skull',
         iconName: 'skull',
     },
   ],
