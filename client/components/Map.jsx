@@ -5,7 +5,7 @@ import {
   DrawingManager,
   Marker,
 } from "@react-google-maps/api";
-import { loadPins } from "../../state/pinSlice";
+import { loadPins } from "../state/pinSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 
@@ -30,7 +30,7 @@ function Map() {
   const [map, setMap] = React.useState(null);
 
   const onLoad = React.useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
+    
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
 

@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "C/NavBar";
-import Map from "C/Map";
+import NavBar from './NavBar.jsx';
+import Map from './Map.jsx';
 
 function App() {
   return (

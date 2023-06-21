@@ -6,15 +6,16 @@ const packageJson = require('./package.json');
 const DirectoryNamedWebpackPlugin = require("directory-named-webpack-plugin");
 const Dotenv = require('dotenv-webpack');
 
-module.exports =  {
+module.exports = {
+    // change to NODE_ENV
     mode: 'development',
     entry: {
+        // change to one entry point
         bundle: path.resolve(__dirname, 'client/index.js'),
-        // add here any additional entry points for code splitting. See https://webpack.js.org/guides/code-splitting/
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        //content hash is used for caching that will detect the file changed once the filename 
+        //change to one filename
         filename: '[name].[contenthash].js',
         clean: true,
     },
@@ -28,7 +29,7 @@ module.exports =  {
         hot: true,
         compress: true,
         proxy: {
-            '/pin/**': {
+            '/pin/*': {
                 target: 'http://localhost:3000/',
                 secure: false,
             },
@@ -63,6 +64,7 @@ module.exports =  {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
+                    // DON'T WE NEED THIS?
                     // options: {
                     //     presets: ['@babel/preset-env','@babel/preset-react'],
                     // },
@@ -106,6 +108,7 @@ module.exports =  {
     },
     resolve: {
         plugins: [
+            // WHAT IS THIS DOING?
             new DirectoryNamedWebpackPlugin({
                 honorIndex: true, // defaults to false
 

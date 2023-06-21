@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from 'Z';
+import { store } from './state';
 import * as bootstrap from 'bootstrap';
-import 'S/main.scss';
-import App from 'C/App/App.jsx';
+import './styles/main.scss';
+import App from './components/App.jsx';
 
  
 
