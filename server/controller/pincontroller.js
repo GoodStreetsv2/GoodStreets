@@ -1,13 +1,14 @@
 const db = require('../database/db.js');
+const pool = require('../database/db.js')
 
 const pinController = {};
 
 pinController.getPins = async (req, res, next) => {
     console.log('~~~~~~~~~~entering pinController.getPins middelware~~~~~~~~~~');
     try {
-        const results = await db.query('SELECT * FROM categories');
-        const data = await res.json(results);
-        res.locals.data = data;
+        const results = await db.query('SELECT * FROM pins');
+        console.log(results)
+        res.locals.data = results;
         return next();
     } catch (err) {
         console.log(err);
