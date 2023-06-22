@@ -28,7 +28,9 @@ export const pinSlice = createSlice({
   name: 'pin',
   initialState,
   reducers: {
-    // loadPins: (state, action) => {},
+    loadPins: (state, action) => {
+      state.pins = action.payload;
+    },
     addPin: (state, action) => {
       state.pins.push(action.payload);
     },

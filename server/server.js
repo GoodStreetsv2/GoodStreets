@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const pinRouter = require('./router/PinRouter');
 const PORT = 3000;
+const path = require('path');
 
 const pool = require('./database/db');
 
@@ -18,6 +19,8 @@ app.use('/pin', pinRouter);
 // app.get('/', (req, res) => {
 //   return res.status(200).send('Great Server Page')
 // });
+
+// app.use('/client/assets', express.static(path.join(__dirname, '../client/assets')));
 
 app.use((err, req, res, next) => {
     const defaultErr = {

@@ -23,6 +23,11 @@ const initialState = {
         name: 'skull',
         iconName: 'skull',
     },
+  {
+      id: 5,
+      name: 'heart',
+      iconName: 'heart'
+    }
   ],
 };
 
