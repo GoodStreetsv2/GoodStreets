@@ -38,7 +38,7 @@ function Map() {
 
   const showInfoWindow = (e) => {
     console.dir(e);
-    setInfoWindowOpen(true);
+    // setInfoWindowOpen(true);
   };
 
   // Map marker array
