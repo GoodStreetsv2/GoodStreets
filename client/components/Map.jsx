@@ -8,14 +8,19 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-// import { loadPins } from "../state/pinSlice";
+import FormModal from "./FormModal";
 import { useSelector, useDispatch } from "react-redux";
 import {
   loadPins,
-  addPin,
-  updateClickedPin,
+  // addPin,
+  // updateClickedPin,
   updateNoPinClicked,
 } from "../state/pinSlice";
+import {  updateLatitude,
+  updateLongitude,
+  updateAddress} from '../state/formSlice'
+
+
 
 export default function Home() {
   const { isLoaded } = useLoadScript({
@@ -42,8 +47,8 @@ function Map() {
   const allPins = useSelector((state) => state.pin.pins);
 
   // Map marker array
-  const pinsToLoad = allPins.map(marker => {
-    console.log(marker)
+  const pinsToLoad = allPins.map((marker, index) => {
+    // console.log(marker)
     const { latitude, longitude, name, _id, pin_name, address, content } = marker;
     if (name) {
       return (
@@ -53,47 +58,41 @@ function Map() {
           key={_id}
           icon={{
             url: require(`../assets/${name}.png`),
-            scaledSize: new window.google.maps.Size(65, 65),
+            scaledSize: new window.google.maps.Size(40, 40),
           }}
-          /*onClick={(e) => showInfoWindow(e)}*/ onClick={() => {
+          onClick={() => {
             setInfoWindowID(_id);
           }}
+          className="Icon"
         >
           {infoWindowID === _id && (
-            <InfoWindow >
+            <InfoWindow onCloseClick={() => setInfoWindowID('')} >
               <div className="info-window" >
               <h3>{pin_name}</h3>
               <label><strong>Address: </strong></label>
                 <p>{address}</p>
-              <label><strong>Content: </strong></label>
+              <label><strong>Review: </strong></label>
                 <p>{content}</p>
               </div>
           </InfoWindow>
           )}
-        </Marker>
+          </Marker>
       );
     }
-    // else {
-    //   return (
-    //     <Marker position={{ lat: Number(latitude), lng: Number(longitude) }} key={_id} icon={{ scaledSize: new window.google.maps.Size(60, 60) }} onClick={showInfoWindow} >
-    //       {infoWindowOpen && (
-    //       <InfoWindow onCloseClick={() => setInfoWindowOpen(false)}>
-    //       <h1>Hi I am Info Window</h1>
-    //       </InfoWindow>
-    //       )}
-    //     </Marker>
-    //   )
-    // }
   });
-  // console.log(pinsToLoad);
 
-  // Clicked pin from state set by clicking on pin in Navbar
+  // // Clicked pin from state set by clicking on pin in Navbar
   const currentPin = useSelector((state) => state.pin.clickedPin);
   const noPinClicked = useSelector((state) => state.pin.noPinClicked);
 
   // Click on the map to add new pin to state and send POST request to add pin to database
+    // Updated to set state with coordinates and address
+      // Send POST request in new onSubmit function
   const handleClick = async (e) => {
-    const coordinates = e.latLng.lat() + "," + e.latLng.lng();
+    const latitude = e.latLng.lat();
+    const longitude = e.latLng.lng();
+    // const coordinates = e.latLng.lat() + "," + e.latLng.lng();
+    const coordinates = latitude + ',' + longitude;
     const addFetch = await fetch("/pin/geocode", {
       method: "POST",
       body: JSON.stringify({ latlng: coordinates }),
@@ -101,52 +100,23 @@ function Map() {
     });
     const address = await addFetch.json();
 
+    dispatch(updateAddress(address));
+    dispatch(updateLatitude(latitude));
+    dispatch(updateLongitude(longitude));
+
     // Don't store in database unless pin has been selected
     if (!currentPin) {
       dispatch(updateNoPinClicked(true));
       return;
     }
-
-    // create action object
-    const pins = {
-      pin_name: "new_pin",
-      latitude: e.latLng.lat(),
-      longitude: e.latLng.lng(),
-      address: address,
-      content: "",
-      created_by: "",
-      // grab category id from local state
-      category_id: currentPin.id,
-      name: currentPin.name,
-    };
-    // dispatch action object
-    dispatch(addPin(pins));
-    // separately, make a post request to /pin
-    const res = await fetch("/pin", {
-      method: "POST",
-      body: JSON.stringify(pins),
-      headers: { "Content-Type": "application/json" },
-    });
-    // const data = await res.json();
-    // console.log(data);
-    dispatch(updateNoPinClicked(false));
-    dispatch(updateClickedPin(null));
   };
 
   const containerStyle = {
-    width: "2000px",
-    height: "1000px",
+    width: "1000px",
+    height: "600px",
   };
 
   const center = { lat: 40.7477503, lng: -73.9959531 };
-  // const options = {
-  //   streetViewControl: false,
-  //   fullscreenControl: false,
-  //   mapTypeControl: false,
-  //   zoomControlOptions: {
-  //     position: google.maps.ControlPosition.RIGHT_TOP
-  //   }
-  // };
 
   return (
     <>
@@ -163,6 +133,7 @@ function Map() {
       {/* <Marker position={{lat: 40.7477463, lng: -73.9933782}} icon={{ url: (require('../assets/codesmith.png')), scaledSize: new window.google.maps.Size(70, 70) }} /> */}
       {pinsToLoad}
       </GoogleMap>
+      <FormModal/>
     </>
   );
 }

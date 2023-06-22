@@ -46,26 +46,10 @@ h1 {
   /*highlight-end */
 }
 
-// .btn {
-//   font-family: "Poppins", sans-serif;
-//   font-size: 25px;
-//   border: 2px solid $font-color;
-//   background-color: white;
-//   transition: 0.3s;
-//   box-shadow: 2px 2px 2px;
-//   &:hover {
-//     background-color: rgb(5, 5, 254);
-//   }
-// }
 
-
-.buttons {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
+button {
+  margin-top: 14px;
+  // font-size: 26px !important;
 }
 
 $nav-bords: 3svh;
@@ -124,4 +108,29 @@ $nav-bords: 3svh;
 
 .info-window {
   font-size: 26px;
+}
+
+label {
+  display: block;
+}
+
+input {
+  display: block;
+}
+
+.form-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 450px;
+  max-height: fit-content;
+  padding: 40px;
+  // font-size: 28px;
+}
+
+.form-modal-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 8px;
 }
