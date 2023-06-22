@@ -26,4 +26,4 @@ INSERT INTO categories (name, icon) VALUES ('heart', 'heart');
 INSERT INTO pins (pin_name, latitude, longitude, address, content, created_by, category_id) VALUES ('Codesmith', 40.7477503, -73.9959585, '330 7th Ave, New York, NY 10001', 'Saw some sketchy students loitering outside', 'xsunnibunnix', 2);
 INSERT INTO pins (pin_name, latitude, longitude, address, content, created_by, category_id) VALUES ('Empire State Building', 40.7484445, -73.9882447, '20 W 34th St., New York, NY 10001', 'Too many tourists.', 'xsunnibunnix', 4);
 
--- psql -d postgres://xavzowox:XN8tG6HIhHXfcLvnGrhbqIoT3jV0qGlN@drona.db.elephantsql.com/xavzowox -f model.sql
+-- psql -d <POSTGRES URI> -f model.sql

@@ -1,27 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  pins: [
-    {
-      pin_name: 'a wall of tears',
-      lat: 40.747624,
-      lng: -73.993109,
-      address: '330 7th Ave, New York, NY 10001',
-      content: '',
-      created_by: 'pijjon',
-      category_id: 4,
-    },
-    {
-      pin_name: 'another wall of tears',
-      lat: 40.748741,
-      lng: -73.993754,
-      address: '330 7th Ave, New York, NY 10001',
-      content: '',
-      created_by: 'pijjon',
-      category_id: 3,
-    },
-  ],
+  pins: [],
   clickedPin: null,
+  noPinClicked: false
 };
 
 export const pinSlice = createSlice({
@@ -37,9 +19,12 @@ export const pinSlice = createSlice({
     updateClickedPin: (state, action) => {
       state.clickedPin = action.payload;
     },
+    updateNoPinClicked: (state, action) => {
+      state.noPinClicked = action.payload;
+    }
   },
 });
 
-export const { loadPins, addPin, updateClickedPin } = pinSlice.actions;
+export const { loadPins, addPin, updateClickedPin, updateNoPinClicked } = pinSlice.actions;
 
 export default pinSlice.reducer;

@@ -9,11 +9,17 @@ function NavBar() {
   const categories = useSelector((state) => state.category.categoryNames);
   const handleClick = (e) => {
     let id;
+    let name;
+    // console.dir(e.target)
     if (e.target.ownerSVGElement) {
       id = e.target.ownerSVGElement.attributes[4].value;
-    } else id = e.target.attributes[4].value;
-    // console.log(id);
-    dispatch(updateClickedPin(Number(id)));
+      name = e.target.ownerSVGElement.attributes[5].value
+    } else {
+      id = e.target.attributes[4].value;
+      name = e.target.attributes[5].value;
+    }
+    // console.log(id, name);
+    dispatch(updateClickedPin({ id: Number(id), name: name }));
   };
   // console.log(categories)
   const arrCategories = categories.map((category, index) => {

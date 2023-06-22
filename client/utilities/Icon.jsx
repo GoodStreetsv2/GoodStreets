@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function Icon(props) {
-  const { name, ...otherProps } = props;
+  const { name, onClick, id } = props;
 
   /* Use state hook to store icon module value */
   const [iconModule, setIconModule] = useState(null);
@@ -25,7 +25,7 @@ function Icon(props) {
 
     const Component = iconModule.default;
 
-    return <Component className="Icon" {...otherProps} />;
+    return <Component className="Icon" id={id} name = {name} onClick={onClick} />;
   };
 
   return <>{renderIcon()}</>;
