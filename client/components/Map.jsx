@@ -13,7 +13,7 @@ import { loadPins, addPin } from '../state/pinSlice';
 
 export default function Home() {
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   });
   if (!isLoaded) return <div> Loading...</div>;
   return <Map />;
@@ -77,16 +77,24 @@ function Map() {
     console.log(data);
   };
 
+  const containerStyle = {
+    width: '2000px',
+    height: '1000px'
+  };
 
-  const center = useMemo(() => ({ lat: 40.74, lng: -73.99 }), []);
-  console.log(center)
+  const center = {lat: 40.7477463, lng: -73.9933782}
+
+  // const center = useMemo(() => ({ lat: 40.74, lng: -73.99 }), []);
+  // console.log(center)
   return (
     <GoogleMap
       zoom={16}
-      center={{ lat: 40.74, lng: -73.99 }}
-      onClick={(e) => handleClick(e)} mapContainerClassName="map-container"
+      center={center}
+      onClick={(e) => handleClick(e)}
+      mapContainerClassName="map-container"
+      mapContainerStyle = {containerStyle}
     >
-      <Marker position={{lat: 40.7477463, lng: -73.9933782}} icon={{ url: (require('../assets/codesmith.png')), scaledSize: new window.google.maps.Size(130, 60) }} />
+      <Marker position={{lat: 40.7477463, lng: -73.9933782}} icon={{ url: (require('../assets/codesmith.png')), scaledSize: new window.google.maps.Size(187.2, 52.8) }} />
       {pinsToLoad}
     </GoogleMap>
   );
