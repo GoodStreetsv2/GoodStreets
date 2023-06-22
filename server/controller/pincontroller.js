@@ -40,8 +40,16 @@ pinController.updatePin = async (req, res, next) => {
 }; 
 
 pinController.deletePin= async (req, res, next) => {
-    console.log('~~~~~~~~~~entering pinController.getPins middleware~~~~~~~~~~');
-    return next();
+    console.log('~~~~~~~~~~entering pinController.deletePins middleware~~~~~~~~~~');
+    const id = req.params.id;
+    console.log(id);
+    const queryString = `DELETE FROM pins WHERE _id=${id}`
+    try {
+        await db.query(queryString)
+        return next()
+    } catch (err){
+        console.log(err);
+    }
 };
 
 module.exports = pinController;

@@ -1,11 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateLocation, updateContent, updateUsername, clearState } from '../state/formSlice'
+import { updateLocation, updateContent, updateUsername, clearState, toggleModal } from '../state/formSlice'
 import {
   addPin,
   updateClickedPin,
   updateNoPinClicked,
 } from "../state/pinSlice";
+import { FontAwesomeIcon as FAIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 const FormModal = () => {
   const dispatch = useDispatch();
@@ -59,29 +61,13 @@ const FormModal = () => {
     pins._id = data._id;
     console.log(pins)
     dispatch(addPin(pins));
+    dispatch(toggleModal(false))
   }
 
   return (
-    // <div className="modal" tabIndex="-1" role="dialog">
-    //   <div className="modal-dialog" role="document">
-    //     <div className="modal-content">
-    //       <div className="modal-header">
-    //         <h5 className="modal-title">Modal title</h5>
-    //         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-    //           <span aria-hidden="true">&times;</span>
-    //         </button>
-    //       </div>
-    //       <div className="modal-body">
-    //         <p>Modal body text goes here.</p>
-    //       </div>
-    //       <div className="modal-footer">
-    //         <button type="button" className="btn btn-primary">Save changes</button>
-    //         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-    <form className="form-control form-group form-modal" onSubmit={e=> onSubmit(e)}>
+    <div className="form-modal" >
+    <form className="form-control form-group" onSubmit={e => onSubmit(e)}>
+      <FAIcon icon={faTimes} onClick={ () => dispatch(toggleModal(false)) } />
       <div className="form-modal-group" >
         <label htmlFor="pinName" className="form-label">Location Name: </label>
         <input name="location" type="text" id="pinName" className="form-text" placeholder="Enter a name for your pin" value={location} onChange={e => handleChange(e)} />
@@ -96,7 +82,8 @@ const FormModal = () => {
       </div>
       <button type="submit" className="btn btn-primary" >Submit</button>
     </form>
-  )
+    </div>
+    )
 }
 
 export default FormModal;

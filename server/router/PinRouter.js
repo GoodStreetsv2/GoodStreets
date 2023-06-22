@@ -33,7 +33,7 @@ router.patch('/', pinController.updatePin, (req, res) => {
   res.status(200).json('You made a patch request, congratulations');
 });
 
-router.delete('/', pinController.deletePin, (req, res) => {
+router.delete('/:id', pinController.deletePin, (req, res) => {
   res.status(200).json('You made a delete request, congratulations');
 });
 

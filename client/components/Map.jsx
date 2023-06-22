@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon as FAIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import {
   GoogleMap,
@@ -12,13 +14,16 @@ import FormModal from "./FormModal";
 import { useSelector, useDispatch } from "react-redux";
 import {
   loadPins,
+  deletePin,
   // addPin,
   // updateClickedPin,
   updateNoPinClicked,
+  setCenter,
 } from "../state/pinSlice";
 import {  updateLatitude,
   updateLongitude,
-  updateAddress} from '../state/formSlice'
+  updateAddress,
+  toggleModal } from '../state/formSlice'
 
 
 
@@ -32,7 +37,16 @@ export default function Home() {
 
 function Map() {
   const dispatch = useDispatch();
+  const activeModal = useSelector((state) => state.form.active_modal);
   const [infoWindowID, setInfoWindowID] = useState("");
+  const center = useSelector(state => state.pin.center);
+
+  const deleteRequest = async (id) => {
+    await fetch(`/pin/${id}`,
+      {
+        method: "DELETE",
+    })
+  }
 
   // Initial pin data fetch to set state
   useEffect(() => {
@@ -58,9 +72,10 @@ function Map() {
           key={_id}
           icon={{
             url: require(`../assets/${name}.png`),
-            scaledSize: new window.google.maps.Size(40, 40),
+            scaledSize: new window.google.maps.Size(50, 50),
           }}
           onClick={() => {
+            setCenter({latitude, longitude})
             setInfoWindowID(_id);
           }}
           className="Icon"
@@ -73,6 +88,10 @@ function Map() {
                 <p>{address}</p>
               <label><strong>Review: </strong></label>
                 <p>{content}</p>
+                <FAIcon icon={faTrash} className="btn btn-danger" onClick={() => {
+                  deleteRequest(infoWindowID)
+                  dispatch(deletePin(infoWindowID))
+                }} />
               </div>
           </InfoWindow>
           )}
@@ -91,6 +110,7 @@ function Map() {
   const handleClick = async (e) => {
     const latitude = e.latLng.lat();
     const longitude = e.latLng.lng();
+    // console.log(latitude, longitude)
     // const coordinates = e.latLng.lat() + "," + e.latLng.lng();
     const coordinates = latitude + ',' + longitude;
     const addFetch = await fetch("/pin/geocode", {
@@ -108,6 +128,8 @@ function Map() {
     if (!currentPin) {
       dispatch(updateNoPinClicked(true));
       return;
+    } else {
+      dispatch(toggleModal(true))
     }
   };
 
@@ -116,12 +138,10 @@ function Map() {
     height: "600px",
   };
 
-  const center = { lat: 40.7477503, lng: -73.9959531 };
-
   return (
     <>
       {noPinClicked && 
-      <p style={{ color: 'red', fontSize: '36px' }} >Please select a pin</p>}
+      <p style={{ color: 'red', fontSize: '30px' }} >Please select a pin</p>}
     <GoogleMap
       zoom={16}
       center={center}
@@ -133,7 +153,7 @@ function Map() {
       {/* <Marker position={{lat: 40.7477463, lng: -73.9933782}} icon={{ url: (require('../assets/codesmith.png')), scaledSize: new window.google.maps.Size(70, 70) }} /> */}
       {pinsToLoad}
       </GoogleMap>
-      <FormModal/>
+      {activeModal && <FormModal />}
     </>
   );
-}
+} 
