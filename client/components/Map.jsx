@@ -22,11 +22,6 @@ export default function Home() {
 
 function Map() {
   const dispatch = useDispatch();
-  // const [infoWindowOpen, setInfoWindowOpen] = useState(false);
-  // const [selectedElement, setSelectedElement] = useState(null);
-  // const [showInfoWindow, setInfoWindowFlag] = useState(true);
-  // const [activeMarker, setActiveMarker] = useState(null);
-
   const [infoWindowID, setInfoWindowID] = useState("");
 
   // Initial pin data fetch to set state
@@ -41,24 +36,22 @@ function Map() {
 
   const allPins = useSelector(state => state.pin.pins);
 
-  // const showInfoWindow = (e) => {
-  //   console.dir(e);
-  //   // setInfoWindowOpen(true);
-  // };
-
   // Map marker array
   const pinsToLoad = allPins.map(marker => {
-    const { latitude, longitude, name, _id } = marker;
-    // label - MarkerLabel object
+    console.log(marker)
+    const { latitude, longitude, name, _id, pin_name, address, content } = marker;
     if (name) {
       return (
         <Marker position={{ lat: Number(latitude), lng: Number(longitude) }} name={name} key={_id} icon={{ url: (require(`../assets/${name}.png`)), scaledSize: new window.google.maps.Size(65, 65) }} /*onClick={(e) => showInfoWindow(e)}*/ onClick={() => {setInfoWindowID(_id)}} >
           {infoWindowID === _id && (
-            <InfoWindow
-              /*visible={showInfoWindow}
-              marker={activeMarker}
-              onCloseClick={() => setSelectedElement(null)}*/>
-          <h5>Hi I am Info Window</h5>
+            <InfoWindow >
+              <div className="info-window" >
+              <h3>{pin_name}</h3>
+              <label><strong>Address: </strong></label>
+                <p>{address}</p>
+              <label><strong>Content: </strong></label>
+                <p>{content}</p>
+              </div>
           </InfoWindow>
           )}
         </Marker>
@@ -125,15 +118,15 @@ function Map() {
     height: '1000px'
   };
 
-  const center = { lat: 40.7477463, lng: -73.9933782 };
-  const options = {
-    streetViewControl: false,
-    fullscreenControl: false,
-    mapTypeControl: false,
-    zoomControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_TOP
-    }
-  };
+  const center = { lat: 40.7477503, lng: -73.9959531 };
+  // const options = {
+  //   streetViewControl: false,
+  //   fullscreenControl: false,
+  //   mapTypeControl: false,
+  //   zoomControlOptions: {
+  //     position: google.maps.ControlPosition.RIGHT_TOP
+  //   }
+  // };
 
   return (
     <>
@@ -147,7 +140,7 @@ function Map() {
       mapContainerStyle={containerStyle}
       // option={options}
     >
-      <Marker position={{lat: 40.7477463, lng: -73.9933782}} icon={{ url: (require('../assets/codesmith.png')), scaledSize: new window.google.maps.Size(187.2, 52.8) }} />
+      {/* <Marker position={{lat: 40.7477463, lng: -73.9933782}} icon={{ url: (require('../assets/codesmith.png')), scaledSize: new window.google.maps.Size(70, 70) }} /> */}
       {pinsToLoad}
       </GoogleMap>
       </>
