@@ -26,6 +26,7 @@ pinController.addPin= async (req, res, next) => {
         const queryString = 'INSERT INTO pins (pin_name, latitude, longitude, address, content, created_by, category_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *';
         const result = await db.query(queryString, values);
         // console.log(result.rows[0]);
+        res.locals.newPin = result.rows[0];
         return next();
     } catch (err) {
         // ADD ERROR HANDLER
