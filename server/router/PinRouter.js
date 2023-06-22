@@ -26,7 +26,7 @@ router.post('/geocode', async (req, res) => {
 });
 
 router.post('/', pinController.addPin, (req, res) => {
-  res.status(200).json('You made a post request, congratulations');
+  res.status(200).json(res.locals.newPin);
 });
 
 router.patch('/', pinController.updatePin, (req, res) => {

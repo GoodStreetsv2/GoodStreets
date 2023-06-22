@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   pins: [],
   clickedPin: null,
-  noPinClicked: false
+  noPinClicked: false,
+
 };
 
 export const pinSlice = createSlice({
@@ -21,7 +22,7 @@ export const pinSlice = createSlice({
     },
     updateNoPinClicked: (state, action) => {
       state.noPinClicked = action.payload;
-    }
+    },
   },
 });
 
