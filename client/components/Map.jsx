@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon as FAIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import MapStyles from '../styles/_mapStyles';
 
 import {
   GoogleMap,
@@ -25,7 +26,7 @@ import {  updateLatitude,
   updateAddress,
   toggleModal } from '../state/formSlice'
 
-
+const options = { styles: MapStyles };
 
 export default function Home() {
   const { isLoaded } = useLoadScript({
@@ -142,18 +143,20 @@ function Map() {
   return (
     <>
       {noPinClicked && 
-      <p style={{ color: 'red', fontSize: '30px' }} >Please select a pin</p>}
+        <p style={{ color: 'red', fontSize: '30px' }} >Please select a pin</p>}
+      <div className="Map">
     <GoogleMap
-      zoom={16}
+      zoom={15}
       center={center}
       onClick={(e) => handleClick(e)}
       mapContainerClassName="map-container"
       mapContainerStyle={containerStyle}
-      // option={options}
+      options={options}
     >
       {/* <Marker position={{lat: 40.7477463, lng: -73.9933782}} icon={{ url: (require('../assets/codesmith.png')), scaledSize: new window.google.maps.Size(70, 70) }} /> */}
       {pinsToLoad}
-      </GoogleMap>
+        </GoogleMap>
+        </div> 
       {activeModal && <FormModal />}
     </>
   );
