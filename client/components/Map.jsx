@@ -10,7 +10,7 @@ import {
 } from "@react-google-maps/api";
 // import { loadPins } from "../state/pinSlice";
 import { useSelector, useDispatch } from "react-redux";
-import { loadPins, addPin, updateNoPinClicked } from '../state/pinSlice';
+import { loadPins, addPin, updateClickedPin, updateNoPinClicked } from '../state/pinSlice';
 
 export default function Home() {
   const { isLoaded } = useLoadScript({
@@ -22,7 +22,12 @@ export default function Home() {
 
 function Map() {
   const dispatch = useDispatch();
-  const [infoWindowOpen, setInfoWindowOpen] = useState(false);
+  // const [infoWindowOpen, setInfoWindowOpen] = useState(false);
+  // const [selectedElement, setSelectedElement] = useState(null);
+  // const [showInfoWindow, setInfoWindowFlag] = useState(true);
+  // const [activeMarker, setActiveMarker] = useState(null);
+
+  const [infoWindowID, setInfoWindowID] = useState("");
 
   // Initial pin data fetch to set state
   useEffect(() => {
@@ -36,10 +41,10 @@ function Map() {
 
   const allPins = useSelector(state => state.pin.pins);
 
-  const showInfoWindow = (e) => {
-    console.dir(e);
-    // setInfoWindowOpen(true);
-  };
+  // const showInfoWindow = (e) => {
+  //   console.dir(e);
+  //   // setInfoWindowOpen(true);
+  // };
 
   // Map marker array
   const pinsToLoad = allPins.map(marker => {
@@ -47,25 +52,29 @@ function Map() {
     // label - MarkerLabel object
     if (name) {
       return (
-        <Marker position={{ lat: Number(latitude), lng: Number(longitude) }} name={name} key={_id} icon={{ url: (require(`../assets/${name}.png`)), scaledSize: new window.google.maps.Size(65, 65) }} onClick={(e) => showInfoWindow(e)} >
-          {infoWindowOpen && (
-          <InfoWindow onCloseClick={() => setInfoWindowOpen(false)}>
-          <h1>Hi I am Info Window</h1>
-          </InfoWindow>
-          )}
-        </Marker>
-      )
-    } else {
-      return (
-        <Marker position={{ lat: Number(latitude), lng: Number(longitude) }} key={_id} icon={{ scaledSize: new window.google.maps.Size(60, 60) }} onClick={showInfoWindow} >
-          {infoWindowOpen && (
-          <InfoWindow onCloseClick={() => setInfoWindowOpen(false)}>
-          <h1>Hi I am Info Window</h1>
+        <Marker position={{ lat: Number(latitude), lng: Number(longitude) }} name={name} key={_id} icon={{ url: (require(`../assets/${name}.png`)), scaledSize: new window.google.maps.Size(65, 65) }} /*onClick={(e) => showInfoWindow(e)}*/ onClick={() => {setInfoWindowID(_id)}} >
+          {infoWindowID === _id && (
+            <InfoWindow
+              /*visible={showInfoWindow}
+              marker={activeMarker}
+              onCloseClick={() => setSelectedElement(null)}*/>
+          <h5>Hi I am Info Window</h5>
           </InfoWindow>
           )}
         </Marker>
       )
     }
+    // else {
+    //   return (
+    //     <Marker position={{ lat: Number(latitude), lng: Number(longitude) }} key={_id} icon={{ scaledSize: new window.google.maps.Size(60, 60) }} onClick={showInfoWindow} >
+    //       {infoWindowOpen && (
+    //       <InfoWindow onCloseClick={() => setInfoWindowOpen(false)}>
+    //       <h1>Hi I am Info Window</h1>
+    //       </InfoWindow>
+    //       )}
+    //     </Marker>
+    //   )
+    // }
 
   });
   // console.log(pinsToLoad);
@@ -107,6 +116,8 @@ function Map() {
     });
     // const data = await res.json();
     // console.log(data);
+    dispatch(updateNoPinClicked(false));
+    dispatch(updateClickedPin(null));
   };
 
   const containerStyle = {
