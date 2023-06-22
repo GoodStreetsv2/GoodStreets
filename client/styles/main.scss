@@ -13,6 +13,7 @@ $genWidth: 600px;
 //import fonts
 @import url("https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&family=Work+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&family=Roboto&family=Work+Sans&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Griffy&display=swap');
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -20,10 +21,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient($primary-color, darken($primary-color, 15%));
-  background-size: auto;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  // background: linear-gradient($primary-color, darken($primary-color, 15%));
+  // background-size: auto;
+  // background-repeat: no-repeat;
+  // background-attachment: fixed;
+  background: hsla(228, 17%, 53%, 1);
+
+  background: radial-gradient(circle, rgb(133, 154, 238) 0%, hsla(229, 28%, 88%, 1) 100%);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -31,12 +38,16 @@ h1 {
   flex-direction: center;
   align-items: center;
   justify-content: center;
-  font-family: "Playfair Display", serif;
+  font-family: 'Griffy', cursive;
   // font-size: 100px;
   // color: gradient($font-color, lighten($font-color, 15%));
   font-size: clamp(30pt, 10svh, 16svh);
   // font-size: 6rem;
-  background: linear-gradient(45deg, $font-color, darken($font-color, 15%));
+  // background: linear-gradient(45deg, black, white);
+  background: white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+  text-shadow: 2px 2px 15px white;
   /*highlight-start */
   background-clip: text;
   -webkit-background-clip: text;
@@ -49,7 +60,6 @@ h1 {
 
 button {
   margin-top: 14px;
-  // font-size: 26px !important;
 }
 
 $nav-bords: 3svh;
@@ -72,7 +82,7 @@ $nav-bords: 3svh;
   // padding-right: 20px;
   // padding-top: $nav-bords;
   // padding-bottom: $nav-bords;
-  background-color: $navbar-color;
+  background-color: rgba(255, 255, 255, .5);
   // width:
 
   .Icon {
@@ -100,20 +110,32 @@ $nav-bords: 3svh;
   flex-direction: row;
   // flex-wrap: wrap;
   justify-content: center;
+  height: 100vh;
 }
 
 .AdColumn {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-
+  justify-content: center;
+  align-items: center;
   width: 15%;
+  margin: 0 24px;
+  // min-width: 225px;
+}
+
+.Ads {
+  border: .4px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .Ad {
   display: flex;
-  width: 100%;
+  width: 275px;
   height: 100%;
+  padding: 24px;
 }
 
 .App {
@@ -159,4 +181,9 @@ input {
   flex-direction: column;
   justify-content: center;
   margin-bottom: 8px;
+}
+
+.Map {
+  border: 1px solid black;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
 }
