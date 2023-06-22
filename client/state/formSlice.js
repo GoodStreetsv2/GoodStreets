@@ -7,6 +7,7 @@ const initialState = {
   address: '',
   content: '',
   created_by: '',
+  active_modal: false,
 }
 
 export const formSlice = createSlice({
@@ -31,11 +32,14 @@ export const formSlice = createSlice({
     updateAddress: (state, action) => {
       state.address = action.payload
     },
+    toggleModal: (state, action) => {
+      state.active_modal = action.payload
+    },
     clearState: (state, action) => {
       return initialState;
     }
   }
 })
 
-export const { updateLocation, updateContent, updateUsername, updateLatitude, updateLongitude,updateAddress, clearState } = formSlice.actions;
+export const { updateLocation, updateContent, updateUsername, updateLatitude, updateLongitude,updateAddress, clearState, toggleModal } = formSlice.actions;
 export default formSlice.reducer;
