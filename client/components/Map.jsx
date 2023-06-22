@@ -142,8 +142,8 @@ function Map() {
   };
 
   const containerStyle = {
-    width: "2000px",
-    height: "1000px",
+    width: "1000px",
+    height: "500px",
   };
 
   const center = { lat: 40.7477463, lng: -73.9933782 };
