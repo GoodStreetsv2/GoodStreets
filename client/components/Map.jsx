@@ -75,7 +75,8 @@ function Map() {
             scaledSize: new window.google.maps.Size(50, 50),
           }}
           onClick={() => {
-            setCenter({latitude, longitude})
+            console.log(latitude, longitude)
+            dispatch(setCenter({ lat: Number(latitude), lng: Number(longitude) }));
             setInfoWindowID(_id);
           }}
           className="Icon"
