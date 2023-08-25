@@ -1,0 +1,73 @@
+{
+  "name": "goodstreets_2.0",
+  "version": "2.0.0",
+  "description": "a CRUD application to pinpoint in a google map",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production nodemon server/server.js",
+    "dev": "NODE_ENV=development webpack serve & nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "clear && webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GoodStreetsv2/GoodStreets.git"
+  },
+  "contributors": [
+    "Sunny Pacheco", 
+    "Mateo Lopez-Castillo",
+    "Alwin Zhao",
+    "Alston Nguyen",
+    "Angelo Dell Acqua",
+    "Alexis Contreras",
+    "Wai San Gu"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GoodStreetsv2/GoodStreets/issues"
+  },
+  "homepage": "https://github.com/GoodStreetsv2/GoodStreets#readme",
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/plugin-syntax-jsx": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "@dr.pogodin/babel-preset-svgr": "^1.8.0",
+    "@svgr/core": "^8.0.0",
+    "@svgr/webpack": "^8.0.1",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.2",
+    "concurrently": "^8.2.0",
+    "css-loader": "^6.8.1",
+    "dotenv": "^16.3.1",
+    "dotenv-webpack": "^8.0.1",
+    "eslint": "^8.42.0",
+    "eslint-plugin-react": "^7.32.2",
+    "html-webpack-plugin": "^5.5.3",
+    "nodemon": "^2.0.22",
+    "postcss-loader": "^7.3.3",
+    "sass": "1.64.2",
+    "sass-loader": "^13.3.2",
+    "style-loader": "^3.3.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.87.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1",
+    "webpack-merge": "^5.9.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@popperjs/core": "^2.11.8",
+    "@react-google-maps/api": "^2.18.1",
+    "@reduxjs/toolkit": "^1.9.5",
+    "bootstrap": "^5.3.0",
+    "directory-named-webpack-plugin": "^4.0.1",
+    "express": "^4.18.2",
+    "node-polyfill-webpack-plugin": "^2.0.1",
+    "pg": "^8.11.0",
+    "react": "^18.2.0",
+    "react-redux": "^8.1.0"
+  }
+}
