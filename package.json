@@ -1,11 +1,11 @@
 {
-  "name": "goodstreets",
-  "version": "1.0.0",
+  "name": "goodstreets_2.0",
+  "version": "2.0.0",
   "description": "a CRUD application to pinpoint in a google map",
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=production nodemon server/server.js",
-    "dev": "webpack serve & nodemon server/server.js",
+    "dev": "NODE_ENV=development webpack serve & nodemon server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "clear && webpack"
   },
