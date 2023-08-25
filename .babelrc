@@ -1,7 +1,0 @@
-{
-  "presets": [
-    "@babel/preset-react",
-    "@dr.pogodin/babel-preset-svgr",
-    "@babel/preset-env"
-  ]
-}

@@ -1,5 +1,4 @@
-require('dotenv').config();
-const connectionString = 'postgres://xavzowox:XN8tG6HIhHXfcLvnGrhbqIoT3jV0qGlN@drona.db.elephantsql.com/xavzowox';
+const connectionString = process.env.CONNECTION_STRING;
 const { Pool } = require('pg');
 
 const pool = new Pool({
