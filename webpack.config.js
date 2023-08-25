@@ -7,10 +7,7 @@ const Dotenv = require('dotenv-webpack');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 module.exports = {
-  // change to NODE_ENV
-
   mode: process.env.NODE_ENV,
-
   entry: {
     // change to one entry point
     bundle: path.resolve(__dirname, 'client/index.js'),
@@ -62,22 +59,15 @@ module.exports = {
         ],
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|svg)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
+            presets: ['@babel/preset-env', '@babel/preset-react', '@dr.pogodin/babel-preset-svgr'],
           },
         },
       },
-      {
-        test: /\.svg$/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
@@ -85,7 +75,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.json'],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

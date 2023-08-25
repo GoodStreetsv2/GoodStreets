@@ -18,7 +18,7 @@ router.post('/geocode', async (req, res) => {
       header: { 'Content-Type': 'application/json' },
     }
   );
-  console.log('this is addfetch server');
+  // console.log('this is addfetch server');
   const parsedData = await addFetch.json();
   const friendly_address = parsedData.results[0].formatted_address;
   res.locals.address = friendly_address;

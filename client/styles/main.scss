@@ -1,5 +1,5 @@
+@use 'sass:math';
 @import "~bootstrap/scss/bootstrap";
-//http://10.0.10.140:8080/
 
 // $primary-color: #0480c9;
 $primary-color: #1c3144;
@@ -21,10 +21,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // background: linear-gradient($primary-color, darken($primary-color, 15%));
-  // background-size: auto;
-  // background-repeat: no-repeat;
-  // background-attachment: fixed;
   background: hsla(228, 17%, 53%, 1);
 
   background: radial-gradient(circle, rgb(133, 154, 238) 0%, hsla(229, 28%, 88%, 1) 100%);
@@ -39,11 +35,7 @@ h1 {
   align-items: center;
   justify-content: center;
   font-family: 'Griffy', cursive;
-  // font-size: 100px;
-  // color: gradient($font-color, lighten($font-color, 15%));
   font-size: clamp(30pt, 10svh, 16svh);
-  // font-size: 6rem;
-  // background: linear-gradient(45deg, black, white);
   background: white;
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: black;
@@ -65,10 +57,7 @@ button {
 $nav-bords: 3svh;
 
 .nav {
-  //
   height: clamp(5svh, 10svh, 16svh);
-  //font-size: clamp(5svh, 10svh, 16svh);
-
   border: 2px solid $button-color;
   margin-top: $nav-bords;
   margin-bottom: $nav-bords;
@@ -78,12 +67,7 @@ $nav-bords: 3svh;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  // padding-left: 20px;
-  // padding-right: 20px;
-  // padding-top: $nav-bords;
-  // padding-bottom: $nav-bords;
   background-color: rgba(255, 255, 255, .5);
-  // width:
 
   .Icon {
     height: clamp(5svh, 10svh, 16svh);
@@ -100,10 +84,6 @@ $nav-bords: 3svh;
     }
   }
 }
-/** {
-    style for the App component @Angelo 
-} */
-
 
 .MainContainer {
   display: flex;
@@ -120,7 +100,6 @@ $nav-bords: 3svh;
   align-items: center;
   width: 15%;
   margin: 0 24px;
-  // min-width: 225px;
 }
 
 .Ads {
@@ -173,7 +152,6 @@ input {
   left: 50%;
   top: 70%;
   transform: translate(-50%, -50%)
-  // font-size: 28px;
 }
 
 .form-modal-group {
